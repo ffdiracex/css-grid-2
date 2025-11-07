@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Grid Showcase</title>
+    <style>
+        :root {
+            --primary: #4CAF50;
+            --primary-dark: #388E3C;
+            --primary-light: #C8E6C9;
+            --secondary: #2196F3;
+            --accent: #FF9800;
+            --dark: #333;
+            --light: #fff;
+            --gray: #f5f5f5;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            min-height: 100vh;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            gap: 24px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--light);
+            padding: 2.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            z-index: 1;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+        }
+
+        main {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            padding: 0;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: var(--light);
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h3 {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .card-btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            align-self: flex-start;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .featured {
+            grid-column: span 2;
+            background: linear-gradient(135deg, var(--secondary), #1976D2);
+            color: white;
+        }
+
+        .featured h3, .featured p {
+            color: white;
+        }
+
+        .featured .card-btn {
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--secondary);
+        }
+
+        .featured .card-btn:hover {
+            background: white;
+        }
+
+        footer {
+            background: linear-gradient(135deg, #444, #222);
+            color: var(--light);
+            padding: 2.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1.2rem;
+            color: var(--primary-light);
+            position: relative;
+            padding-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.7rem;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-light);
+            padding-left: 8px;
+        }
+
+        .footer-section a::before {
+            content: '→';
+            margin-right: 8px;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover::before {
+            opacity: 1;
+        }
+
+        .copyright {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid #555;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 968px) {
+            .featured {
+                grid-column: span 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            main {
+                grid-template-columns: 1fr;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>CSS Grid Layout</h1>
+            <p>A modern, responsive design showcasing CSS Grid capabilities. Andreas will probably agree that english is easier to write with than swedish.</p>
+        </header>
+        <main>
+            <div class="card">
+                <div class="card-icon">1</div>
+                <h3>Grid System</h3>
+                <p>CSS Grid Layout provides a two-dimensional layout system for the web, allowing developers to create complex responsive web designs more easily and consistently across browsers.</p>
+                <button class="card-btn">View Details</button>
+            </div>
+            <div class="card">
+                <div class="card-icon">2</div>
+                <h3>Flexible Layouts</h3>
+                <p>Create responsive designs that adapt to any screen size with CSS Grid's flexible units and functions. Design once and deploy everywhere with minimal media queries.</p>
+                <button class="card-btn">Explore Options</button>
+            </div>
+            <div class="card featured">
+                <div class="card-icon">★</div>
+                <h3>Featured Section</h3>
+                <p>This card spans multiple columns on larger screens and demonstrates how to create visually distinct sections within your grid layout with gradient backgrounds.</p>
+                <button class="card-btn">Special Feature</button>
+            </div>
+            <div class="card">
+                <div class="card-icon">3</div>
+                <h3>Modern Design</h3>
+                <p>Combine CSS Grid with modern design elements like gradients, shadows, and smooth transitions for a polished, contemporary look that engages users.</p>
+                <button class="card-btn">See Examples</button>
+            </div>
+            <div class="card">
+                <div class="card-icon">4</div>
+                <h3>Interactive Elements</h3>
+                <p>Add hover effects, animations, and interactive components to engage users and improve the overall experience of your web applications.</p>
+                <button class="card-btn">Try It Out</button>
+            </div>
+            <div class="card">
+                <div class="card-icon">5</div>
+                <h3>Performance</h3>
+                <p>CSS Grid is optimized for performance and works seamlessly with other CSS features to create fast, responsive layouts without JavaScript dependencies.</p>
+                <button class="card-btn">Learn More</button>
+            </div>
+        </main>
+        <footer>
+            <div class="footer-section">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="#">N/A</a></li>
+                    <li><a href="#">N/A</a></li>
+                    <li><a href="#">N/A</a></li>
+                    <li><a href="#">N/A</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">N/A</a></li>
+                    <li><a href="#">N/A</a></li>
+                    <li><a href="#">N/A</a></li>
+                    <li><a href="#">N/A</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="#">N/A</a></li>
+                    <li><a href="#">N/A</a></li>
+                    <li><a href="#">N/A</a></li>
+                    <li><a href="#">N/A</a></li>
+                </ul>
+            </div>
+            <div class="copyright">
+                <p>CSS Grid Uppgift </p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
